@@ -1,31 +1,19 @@
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+// var Schema = mongoose.Schema;
+var BaseSchema = require('./baseSchema').BaseSchema;
 
-var pinupSchema = new Schema({
+
+var topic = require('./topicSchema');
+
+var pinupSchema = new BaseSchema({
   pinupUrl:{
     type:String,
-    required:true
-  },
-  timeStamp:{
-    type:Number,
-    required:true
-  },
-  pinupId:{
-    type:Number,
-    required:true
-  },
-  xtoken:{
-    type:String,
-    required:true
+    required:true,
+    unique:true
   },
   title:{
-    type:String
-  },
-  link:{
-    type:String
-  },
-  MainLink:{
-    type:String
+    type:String,
+    require:false
   },
   imageUrl:{
     type:String
@@ -37,22 +25,29 @@ var pinupSchema = new Schema({
     type:String
   },
   topic:{
-    type:String
+    type:mongoose.Schema.Types.ObjectId,
+    ref: 'topic',
+    required:false
   },
-  topicId:{
-    type:Number
+  like:{
+    type:Number,
+    default:0,
+    required:false
   },
-  liked:{
-    type:Number
-    // ,
-    // required:true
+  unlike:{
+    type:Number,
+    default:0,
+    required:false
   },
   views:{
-    type:Number
-    // ,
-    // required:true
+    type:Number,
+    default:0,
+    required:false
   }
 });
 
-var pinUp = module.mongoose('pinup',pinupSchema);
-module.exports = pinUp;
+
+
+module.exports = {
+    pinUp : mongoose.model('pinup',pinupSchema),
+    };
