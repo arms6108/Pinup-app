@@ -1,0 +1,22 @@
+{
+  "name": "fundopinup",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.0",
+    "cheerio": "^0.22.0",
+    "cors": "^2.8.1",
+    "express": "^4.15.0",
+    "express-jwt": "^5.1.0",
+    "jsonwebtoken": "^7.3.0",
+    "mongoose": "^4.8.5",
+    "morgan": "^1.8.1",
+    "request": "^2.80.0"
+  }
+}
