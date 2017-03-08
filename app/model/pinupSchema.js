@@ -11,6 +11,9 @@ var pinupSchema = new BaseSchema({
     required:true,
     unique:true
   },
+  status:{
+    type:String
+  },
   title:{
     type:String,
     require:false

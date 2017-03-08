@@ -19,7 +19,8 @@ function AbstractSchema(){
     Schema.apply(this,arguments);
     this.add({
       isDeleted: {
-        type: Boolean
+        type: Boolean,
+        default:false
       },
       createdAt :{
         type: Date,
@@ -30,16 +31,14 @@ function AbstractSchema(){
         ref : 'User'
       },
       updatedAt:{
-        type: Date,
-        default: Date.now
+        type: Date
       },
       updatedBy:{
         type : ObjectId,
         ref : 'User'
       },
       deletedAt:{
-        type: Date,
-        default: Date.now
+        type: Date
       },
       deletedBy:{
         type : ObjectId,

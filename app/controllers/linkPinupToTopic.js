@@ -1,8 +1,9 @@
 var express = require('express');
 var router  = express.Router();
-var pinUp = require('../model/pinupSchema');
+var pinUp = require('../model/pinupSchema').pinUp;
 
-router.post('/updatePinup',function (req,res) {
+router.post('/',function (req,res) {
 
 });
+
 module.exports = router;

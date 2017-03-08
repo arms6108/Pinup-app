@@ -2,6 +2,7 @@ var express = require('express');
 var request = require("request");
 var cheerio = require("cheerio");
 var pinUp = require('../model/pinupSchema').pinUp;
+var topic = require('../model/topicSchema');
 
 function commonMethod() {
 
@@ -47,5 +48,18 @@ commonMethod.prototype.save = function (pinupData,callback) {
     }
   });
 };
+commonMethod.prototype.topicSave = function (topicData,callback) {
+  // console.log("pinupData::",pinupData);
+  var topicObj = new topic(topicData);
+  topicObj.save(function (error,data) {
+    console.log(error);
+    if(error){
+      callback(error,null);
+    }else {
+      callback(null,data);
+    }
+  });
+};
+
 
 module.exports=commonMethod;
