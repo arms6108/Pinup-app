@@ -1,7 +1,7 @@
 var express = require('express');
 var router  = express.Router();
+var pinUp = require('../model/pinupSchema').pinUp;
 var topicSchema = require('../model/topicSchema');
-
   router.get('/:topicId', function(req, res) {
       var token = "takfaljfldasjf;ljasf;l";
 

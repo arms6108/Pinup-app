@@ -2,15 +2,41 @@ var express = require('express');
 var router  = express.Router();
 var pinUp = require('../model/pinupSchema').pinUp;
 
-router.post('/:pinUpId',function (req,res) {
+router.post('/',function (req,res) {
+
+    var token="adfhaksdhfl;asdjf;lasjdf;ljasdf";
   try {
-    console.log(req.params.pinUpId);
-    pinUp.findByIdAndUpdate({_id:req.params.pinUpId},{title:req.body.title,imageUrl:req.body.imageUrl,description:req.body.description,tags:req.body.tags},function (err,data) {
-      res.send(data);
+    var pinUpId=req.body.pinupId;
+    pinUp.findByIdAndUpdate(pinUpId,{title:req.body.title,imageUrl:req.body.imageUrl,description:req.body.description,tags:req.body.tags},function (err,data) {
+      console.log("data",data);
+      var dataResponse={
+        "status":true,
+        "message":"Pinup edited successfully",
+        "timeStamp":Date.now(),
+        "pinupData":[
+          {
+            "link":data.pinupUrl,
+            "title":data.title
+          }
+        ],
+        "token":token
+      };
+      res.send(dataResponse);
     });
   } catch (e) {
     if (e == 401) {
-        res.status(401).send("unauthorized user");
+        res.status(401).send({
+          "status":false,
+          "message":[
+            "Pinup editing failure",
+            "Pinup Identifier (ID) not set, Pinup Indentifier cannot be blank",
+            "Invalid Pinup Identifier (ID), Pinup Identifier doesn't exists",
+            "Title not set, Title cannot be blank",
+            "Image url not valid, provide a valid url link to scrape"
+          ],
+          "timeStamp":Date.now(),
+          "token":token
+        });
     }
     else {
       res.status(400).send("bad parameter request");

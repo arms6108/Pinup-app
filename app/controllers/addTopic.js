@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var pinUp = require('../model/pinupSchema').pinUp;
 var topicSchema = require('../model/topicSchema');
 var common = require('../common/common');
 var com = new common();

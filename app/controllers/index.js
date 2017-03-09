@@ -4,7 +4,7 @@ var router = express.Router();
 
 
 router.use('/admin',require('./admin'));
-router.use('/general',require('./general'));
+router.use('/admin',require('./general'));
 router.get('/', function(req, res) {
     res.send('This is main controller');
 });

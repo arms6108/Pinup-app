@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
-
-var topicSchema = new mongoose.Schema({
+var BaseSchema = require('./baseSchema').BaseSchema;
+var topicSchema = new BaseSchema({
     topic: String
 });
 

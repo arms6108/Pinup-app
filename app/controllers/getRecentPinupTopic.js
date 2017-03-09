@@ -5,8 +5,15 @@ var pinUp = require('../model/pinupSchema').pinUp;
 router.get('/', function(req, res) {
     var token = "takfaljfldasjf;ljasf;l";
     try {
-        pinUp.find({}, function(err,data) {
-            res.send(data);
+        pinUp.find({"isDeleted":false}, function(err,data) {
+          var dataSend={
+            "status":true,
+            "message":"Fetched the recent pinups Successfully",
+            "timeStamp":Date.now(),
+            "pinupData":data,
+            "token":token
+          };
+            res.send(dataSend);
         });
     } catch (e) {
         if (e == 401) {
