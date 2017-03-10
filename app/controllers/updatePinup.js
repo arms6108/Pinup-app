@@ -6,8 +6,8 @@ router.post('/',function (req,res) {
 
     var token="adfhaksdhfl;asdjf;lasjdf;ljasdf";
   try {
-    var pinUpId=req.body.pinupId;
-    pinUp.findByIdAndUpdate(pinUpId,{title:req.body.title,imageUrl:req.body.imageUrl,description:req.body.description,tags:req.body.tags},function (err,data) {
+    var pinupID=req.body.pinupID;
+    pinUp.findByIdAndUpdate(pinupID,{title:req.body.title,imageUrl:req.body.imageUrl,description:req.body.description,tags:req.body.tags},function (err,data) {
       console.log("data",data);
       var dataResponse={
         "status":true,

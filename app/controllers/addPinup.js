@@ -44,7 +44,7 @@ router.post('/', function(req, res) {
                     "message": 'Pinup added successfully',
                     "timeStamp": Date.now(),
                     "pinupData": [{
-                        "link": data.link,
+                        "link": data.pinupUrl,
                         "title": data.title
                     }],
                     "token": token
@@ -59,7 +59,6 @@ router.post('/', function(req, res) {
         },1000);
       }
   } catch (e) {
-    console.log(e);
     var errorMessage = "Pinup addition failure";
     if(e instanceof ReferenceError){
       errorMessage = "Something bad happened, Please contact systme administrator";

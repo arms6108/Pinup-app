@@ -8,7 +8,10 @@ router.get('/',function (req,res) {
   var token = "takfaljfldasjf;ljasf;l";
 
   try {
-      topicSchema.find({}, function(err,data) {
+      topicSchema.find({},'topicID topic',function(err,data) {
+        data = data.map(function (p) {
+         return p.toObject();
+       });
         var dataSend = {
           "success": true,
           "message": "Fetched the list of topics Successfully",

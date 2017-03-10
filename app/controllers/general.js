@@ -10,7 +10,7 @@ var express = require('express'),
     router.use("/editPinup",require("./editPinup"));
     router.use("/removePinup",require("./removePinup"));
     router.use("/updatePinup",require("./updatePinup"));
-    router.use("/getRecentPinupTopic",require("./getRecentPinupTopic"));
+    router.use("/getRecentPinup",require("./getRecentPinup"));
     router.use("/linkPinupToTopic",require("./linkPinupToTopic"));
 
 module.exports = router;

@@ -30,14 +30,14 @@ commonMethod.prototype.scrapePackage = function(pinupUrl) {
                         "error": "invalid url provided"
                     });
                 }
-            } else if(response.statusCode == 404){
+          //  } else if(response.statusCode == 404){
               //throw 'Please check the URL 404 Error';
             } else {
               throw 'Please provide the proper URL ('+error+')';
             }
         });
     }).catch(function(err) {
-      
+
       throw "Error: "+err;
     });
 };

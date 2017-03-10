@@ -6,17 +6,14 @@ var topicSchema = require('../model/topicSchema');
       var token = "takfaljfldasjf;ljasf;l";
 
       try {
-          topicSchema.findById(req.params.topicId, function(err,data) {
+          topicSchema.findById(req.params.topicId,'topicId topic', function(err,data) {
+            console.log(data);
+            data=data.toObject();
               res.send({
                 "status":"true",
                 "message":"Topic Details successfully",
                 "timeStamp":Date.now(),
-                "Topic Data":[
-                  {
-                    "id":data._id,
-                    "topic":data.topic
-                  }
-                ],
+                "Topic Data":data,
                 "token":token
               });
           });

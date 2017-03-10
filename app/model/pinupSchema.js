@@ -49,7 +49,15 @@ var pinupSchema = new BaseSchema({
   }
 });
 
-
+// specify the transform schema option
+if (!pinupSchema.options.toObject) pinupSchema.options.toObject = {};
+pinupSchema.options.toObject.transform = function (doc, ret, options) {
+  // remove the _id of every document before returning the result
+  ret.pinupID = ret._id;
+  delete ret._id;
+  delete ret.__v;
+  return ret;
+};
 
 module.exports = {
     pinUp : mongoose.model('pinup',pinupSchema),
