@@ -32,6 +32,9 @@ var pinupSchema = new BaseSchema({
     ref: 'topic',
     required:false
   },
+  page:{
+    type:Number
+  },
   like:{
     type:Number,
     default:0,

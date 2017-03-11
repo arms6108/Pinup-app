@@ -2,13 +2,13 @@ var express = require('express');
 var router = express.Router();
 var pinUp = require('../model/pinupSchema').pinUp;
 
-router.get('/', function(req, res) {
+router.get('/:page', function(req, res) {
     var token = "takfaljfldasjf;ljasf;l";
-
     try {
-        pinUp.find({"isDeleted":false},'pinupID pinupUrl title imageUrl tags description createdAt views like unlike', function(err,data) {
+          var page = req.params.page;
+          pinUp.find({"isDeleted":false},'pinupID pinupUrl title imageUrl tags description createdAt views like unlike',{limit:5,skip:page*3},function(err,data) {
            data = data.map(function (p) {
-            return p.toObject();
+           return p.toObject();
           });
           var dataSend={
             "status":true,

@@ -2,11 +2,11 @@ var express = require('express');
 var router  = express.Router();
 var pinUp = require('../model/pinupSchema').pinUp;
 var topicSchema = require('../model/topicSchema');
-  router.get('/:topicId', function(req, res) {
+  router.get('/:topicID', function(req, res) {
       var token = "takfaljfldasjf;ljasf;l";
 
       try {
-          topicSchema.findById(req.params.topicId,'topicId topic', function(err,data) {
+          topicSchema.findById(req.params.topicId,'topicID topic', function(err,data) {
             console.log(data);
             data=data.toObject();
               res.send({
