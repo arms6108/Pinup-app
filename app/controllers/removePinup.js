@@ -23,7 +23,6 @@ router.get('/:pinupID',function (req,res) {
             res.status(401).send({
               "status":false,
               "message":"Pinup already removed.",
-              "timeStamp":Date.now(),
               "token":token
             });
           }
@@ -40,7 +39,6 @@ router.get('/:pinupID',function (req,res) {
         res.status(401).send({
           "status":false,
           "message":"No such pinup data found",
-          "timeStamp":Date.now(),
           "token":token
         });
     }

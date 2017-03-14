@@ -42,7 +42,6 @@ router.post('/', function(req, res) {
                 res.json({
                     "status": "true",
                     "message": 'Pinup added successfully',
-                    "timeStamp": Date.now(),
                     "pinupData": [{
                         "link": data.pinupUrl,
                         "title": data.title

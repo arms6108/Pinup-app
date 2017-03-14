@@ -14,13 +14,14 @@ router.post('/', function(req, res) {
         };
         var addTopic = com.topicSave(data, function(err, dataLocal) {
             console.log("data",dataLocal);
+            res.json({
+                "status": true,
+                "topicData":dataLocal,
+                "message": "Topic added successfully",
+                "token": token
+            });
         });
-        res.json({
-            "status": true,
-            "message": "Topic added successfully",
-            "timeStamp": Date.now(),
-            "token": token
-        });
+
 
     } catch (e) {
         res.status(401).send({
@@ -29,7 +30,6 @@ router.post('/', function(req, res) {
                 "Topic addition failure",
                 "Topic already exists for the sub domain"
             ],
-            "timeStamp": Date.now(),
             "token": token
         });
     }

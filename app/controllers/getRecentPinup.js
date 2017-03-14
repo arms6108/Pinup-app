@@ -13,7 +13,6 @@ router.get('/:page', function(req, res) {
           var dataSend={
             "status":true,
             "message":"Fetched the recent pinups Successfully",
-            "timeStamp":Date.now(),
             "pinupData":data,
             "token":token
           };

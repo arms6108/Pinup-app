@@ -7,7 +7,10 @@ router.get('/:pinupID',function (req,res) {
   try {
     console.log(req.params.pinupID);
     pinUp.findById(req.params.pinupID,function (err,data) {
-      console.log(data);
+    //   data = data.map(function (p) {
+    //   return p.toObject();
+    //  });
+      // console.log(data);
       if(data!==undefined)
       {
         var dataDetails={
@@ -15,7 +18,6 @@ router.get('/:pinupID',function (req,res) {
           "message":[
             "Pinup data fetched Successfully"
           ],
-          "timeStamp": Date.now(),
           "pinupData":[data],
           "token":token
         };
@@ -30,7 +32,6 @@ router.get('/:pinupID',function (req,res) {
                    "Pinup Identifier (ID) not set, Pinup Indentifier cannot be blank",
                    "Invalid Pinup Identifier (ID), Pinup Identifier doesn't exists"
         ],
-          "timeStamp":Date.now(),
           "token":token
         });
       }

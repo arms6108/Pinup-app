@@ -16,7 +16,6 @@ router.get('/',function (req,res) {
           "success": true,
           "message": "Fetched the list of topics Successfully",
           "topicData": data,
-          "timeStamp":Date.now(),
           "token":token
         };
         res.send(dataSend);
@@ -25,7 +24,6 @@ router.get('/',function (req,res) {
       if (e == 401) {
           res.status(401).send({
             "status":"false",
-            "timeStamp":Date.now(),
             "token":token
           });
       }

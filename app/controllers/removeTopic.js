@@ -1,6 +1,5 @@
 var express = require('express');
 var router  = express.Router();
-var pinUp = require('../model/pinupSchema').pinUp;
 var topicSchema = require('../model/topicSchema');
 
 router.post('/',function (req,res) {
@@ -18,7 +17,6 @@ router.post('/',function (req,res) {
             res.send({
               "status":true,
               "message":"Topic successfully removed",
-              "timeStamp":Date.now(),
               "token":token,
               "data":data
             });
@@ -31,7 +29,6 @@ router.post('/',function (req,res) {
                 "Topic Identifier (ID) not set, Topic Indentifier cannot be blank",
                 "Invalid Topic Identifier (ID), Topic Identifier doesn't exists"
               ],
-              "timeStamp":Date.now(),
               "token":token
             });
           }
@@ -53,7 +50,6 @@ router.post('/',function (req,res) {
             "Topic Identifier (ID) not set, Topic Indentifier cannot be blank",
             "Invalid Topic Identifier (ID), Topic Identifier doesn't exists"
           ],
-        "timeStamp": Date.now(),
         "token":token
       });
     }

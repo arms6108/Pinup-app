@@ -12,7 +12,6 @@ var topicSchema = require('../model/topicSchema');
               res.send({
                 "status":"true",
                 "message":"Topic Details successfully",
-                "timeStamp":Date.now(),
                 "Topic Data":data,
                 "token":token
               });
@@ -21,7 +20,6 @@ var topicSchema = require('../model/topicSchema');
           if (e == 401) {
               res.status(401).send({
                 "status":"false",
-                "timeStamp":Date.now(),
                 "token":token
               });
           }

@@ -19,11 +19,11 @@ commonMethod.prototype.scrapePackage = function(pinupUrl) {
                 if ($("#error-section").length === 0) {
                     var objData = {};
                     objData.pinupUrl = pinupUrl;
-                    objData.title = $("title").text() || "";
-                    objData.description = $("description").text() || "";
-                    objData.link = $("link").text() || "";
-                    objData.tags = $("tags").text() || "";
-                    objData.imageUrl = $('.img-responsive.img-comic').attr("src") || "";
+                    objData.title = $("title").text() ||"";
+                    objData.description = $("description").text() ||$('meta[name=Description]').attr("content")||$('meta[name=description]').attr("content")|| "";
+                    objData.link = $("link").text() ||$('link[rel=canonical]').attr('href')||"";
+                    objData.tags = $("tags").text() || $('meta[name=Keywords]').attr("content")||$('meta[name=keywords]').attr("content")||"";
+                    objData.imageUrl = $('link').attr("href") || "";
                     resolve(objData);
                 } else {
                     reject({

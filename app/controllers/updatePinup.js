@@ -8,11 +8,10 @@ router.post('/',function (req,res) {
   try {
     var pinupID=req.body.pinupID;
     pinUp.findByIdAndUpdate(pinupID,{title:req.body.title,imageUrl:req.body.imageUrl,description:req.body.description,tags:req.body.tags},function (err,data) {
-      console.log("data",data);
+      // console.log("data",data);
       var dataResponse={
         "status":true,
         "message":"Pinup edited successfully",
-        "timeStamp":Date.now(),
         "pinupData":[
           {
             "link":data.pinupUrl,
@@ -34,7 +33,6 @@ router.post('/',function (req,res) {
             "Title not set, Title cannot be blank",
             "Image url not valid, provide a valid url link to scrape"
           ],
-          "timeStamp":Date.now(),
           "token":token
         });
     }
