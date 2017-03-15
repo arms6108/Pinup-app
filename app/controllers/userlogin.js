@@ -5,16 +5,17 @@ var express = require('express'),
     user = new UserList();
 
 
+
 router.post('/signin', function(req, res) {
     var login = {
         emailAddress: req.body.emailAddress
     };
     user.findAll(login, function(err, data) {
         if (err) {
-            res.send(err)
+            res.send(err);
         } else {
             console.log(data);
-            res.json(data)
+            res.json(data);
         }
     });
 });
