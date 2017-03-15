@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 // var Schema = mongoose.Schema;
-var BaseSchema = require('./baseSchema').BaseSchema;
+var BaseSchema = require('./abstract').BaseSchema;
 
 
 var topic = require('./topicSchema');

@@ -3,7 +3,7 @@ var router = express.Router();
 var pinUp = require('../model/pinupSchema').pinUp;
 
 router.post('/', function(req, res) {
-    var token = "a;dsfjahfjd;af;anfa;sdfha";
+    var token = req.headers['x-token'];
     console.log(req.body);
     try {
         // pinUp.findByIdAndUpdate(req.body.pinupID, { $set:{topicID:req.body.topicID}},{new:true}, function(err, data) {

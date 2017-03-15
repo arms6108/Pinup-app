@@ -7,7 +7,7 @@ var com = new common();
 router.post('/', function(req, res) {
   var data = {};
   var timeStamp = Date.now();
-  var token = "adfhkashdflahflnaslfnkafaehahbcvbasdifa";
+  var token = req.headers['x-token'];
   try {
       pinupUrl = req.body.pinupUrl;
       var expression = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
@@ -52,10 +52,6 @@ router.post('/', function(req, res) {
               }
             });
         });
-        setTimeout(function(){
-
-          console.log(promiseURL);
-        },1000);
       }
   } catch (e) {
     var errorMessage = "Pinup addition failure";

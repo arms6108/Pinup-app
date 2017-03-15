@@ -5,7 +5,7 @@ var topicSchema = require('../model/topicSchema');
 
 router.get('/',function (req,res) {
 
-  var token = "takfaljfldasjf;ljasf;l";
+  var token = req.headers['x-token'];
 
   try {
       topicSchema.find({},'topicID topic',function(err,data) {

@@ -3,7 +3,7 @@ var router = express.Router();
 var topicSchema = require('../model/topicSchema');
 
 router.post('/', function(req, res) {
-    var token = "adsfhaidshfo;adsfh";
+    var token = req.headers['x-token'];
     try {
         var topicID = req.body.topicID;
         var testTopic = topicSchema.find({
@@ -13,26 +13,25 @@ router.post('/', function(req, res) {
             }
         }, function(errr, data) {
             console.log("data", data);
-            if (data.length!==0) {
+            if (data.length !== 0) {
                 // throw 409;
                 res.status(409).send({
                     "status": false,
                     "message": "Topic already exist",
                     "token": token
                 });
-            }
-            else{
-              topicSchema.findByIdAndUpdate(topicID, {
-                  topic: req.body.topic
-              }, function(err, data) {
-                  // console.log("data",data);
-                  var dataResponse = {
-                      "status": true,
-                      "message": "Topic edited successfully",
-                      "token": token
-                  };
-                  res.send(dataResponse);
-              });
+            } else {
+                topicSchema.findByIdAndUpdate(topicID, {
+                    topic: req.body.topic
+                }, function(err, data) {
+                    // console.log("data",data);
+                    var dataResponse = {
+                        "status": true,
+                        "message": "Topic edited successfully",
+                        "token": token
+                    };
+                    res.send(dataResponse);
+                });
             }
         });
         // console.log(testTopic);

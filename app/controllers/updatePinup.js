@@ -4,7 +4,7 @@ var pinUp = require('../model/pinupSchema').pinUp;
 
 router.post('/',function (req,res) {
 
-    var token="adfhaksdhfl;asdjf;lasjdf;ljasdf";
+    var token = req.headers['x-token'];
   try {
     var pinupID=req.body.pinupID;
     pinUp.findByIdAndUpdate(pinupID,{title:req.body.title,imageUrl:req.body.imageUrl,description:req.body.description,tags:req.body.tags},function (err,data) {

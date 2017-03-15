@@ -6,12 +6,16 @@ var common = require('../common/common');
 var com = new common();
 
 router.post('/', function(req, res) {
-    var token="adsfhjkadfhlasdfhladsfl";
+    var token = req.headers['x-token'];
     try {
             console.log(req.body);
         var data = {
             topic: req.body.topic,
         };
+        if(data.topic===""||data.topic===undefined)
+        {
+          throw 400;
+        }
         var addTopic = com.topicSave(data, function(err, dataLocal) {
             console.log("data",dataLocal);
             res.json({
@@ -24,6 +28,7 @@ router.post('/', function(req, res) {
 
 
     } catch (e) {
+      if(e==401){
         res.status(401).send({
             "status": "false",
             "message": [
@@ -32,6 +37,14 @@ router.post('/', function(req, res) {
             ],
             "token": token
         });
+      }
+      else {
+        res.status(400).send({
+          "status":false,
+          "message":"No topic is been sent",
+          "token":token
+        });
+      }
     }
 });
 

@@ -3,7 +3,7 @@ var router  = express.Router();
 var pinUp = require('../model/pinupSchema').pinUp;
 
 router.get('/:pinupID',function (req,res) {
-  var token="adfhaisdhfiashdfpi9as";
+  var token = req.headers['x-token'];
   try {
     pinUp.findById(req.params.pinupID,function (err,data1) {
       if(data1!==undefined)

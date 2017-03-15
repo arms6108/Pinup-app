@@ -4,14 +4,15 @@ var topicSchema = require('../model/topicSchema');
 
 router.post('/',function (req,res) {
   var topicID = req.body.topicID;
-  var token = "asdfhoasdfhjoa;sdjfpoerhasdf";
+  var token = req.headers['x-token'];
   try {
     topicSchema.findById(topicID,function (err,data1) {
       // console.log(data1);
+      console.log("topicID",data1);
       if(data1!==undefined)
       {
         topicSchema.findOneAndUpdate({_id:topicID,isDeleted:false},{isDeleted:true},function (err,data) {
-          console.log(data);
+          console.log("DATA",data);
           if(data!==null)
           {
             res.send({

@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var BaseSchema = require('./baseSchema').BaseSchema;
+var BaseSchema = require('./abstract').BaseSchema;
 var topicSchema = new BaseSchema({
     topic: String
 });

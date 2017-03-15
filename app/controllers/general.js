@@ -1,6 +1,8 @@
 var express = require('express'),
-    router  = express.Router();
+    router  = express.Router(),
+    auth = require('../auth/auth');
 
+    router.use(auth);
     router.use("/addTopic",require("./addTopic"));
     router.use("/getTopic",require("./getTopic"));
     router.use("/getTopicList",require("./getTopicList"));

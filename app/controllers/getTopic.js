@@ -3,18 +3,25 @@ var router  = express.Router();
 var pinUp = require('../model/pinupSchema').pinUp;
 var topicSchema = require('../model/topicSchema');
   router.get('/:topicID', function(req, res) {
-      var token = "takfaljfldasjf;ljasf;l";
+      var token = req.headers['x-token'];
 
       try {
-          topicSchema.findById(req.params.topicId,'topicID topic', function(err,data) {
-            console.log(data);
-            data=data.toObject();
+          topicSchema.findById(req.params.topicID,'topicID topic', function(err,data) {
+            if (data!==undefined) {
+              data=data.toObject();
               res.send({
                 "status":"true",
                 "message":"Topic Details successfully",
                 "Topic Data":data,
                 "token":token
               });
+            }else {
+              res.status(404).send({
+                "status":false,
+                "message":"Topic Identifier is invalid",
+                "token":token
+              });            }
+
           });
       } catch (e) {
           if (e == 401) {
@@ -22,6 +29,9 @@ var topicSchema = require('../model/topicSchema');
                 "status":"false",
                 "token":token
               });
+          }
+          else if(e == 404){
+              //handling of 404 error
           }
           else {
             res.status(400).send("bad parameter request");

@@ -3,7 +3,7 @@ var router = express.Router();
 var pinUp = require('../model/pinupSchema').pinUp;
 
 router.get('/:page', function(req, res) {
-    var token = "takfaljfldasjf;ljasf;l";
+    var token = req.headers['x-token'];
     try {
           var page = req.params.page;
           pinUp.find({"isDeleted":false},'pinupID pinupUrl title imageUrl tags description createdAt views like unlike',{limit:5,skip:page*3},function(err,data) {
