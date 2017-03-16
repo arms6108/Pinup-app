@@ -3,27 +3,29 @@ var app = express();
 var router = express.Router();
 var com = require('../common/common');
 var pinUp = require('../model/pinupSchema').pinUp;
+var visitor = require('../model/detail');
+var cookie = require('cookie');
 
-app.use(express.cookieParser('my secret here'));
-app.use(express.bodyParser());
 
-router.post('/', function(req, res) {
+
+router.post('/action', function(req, res) {
     try {
-      // if (req.cookies.remember)
-      //   res.send({
-      //     "message": "Appropriate action already been taken"
-      //   });
-      var condition;
+
+      var condition={};
         pinupID = req.body.pinupID;
+        console.log("pinid",pinupID);
         if (req.body.like === true) {
-        condition=like;
+        condition.$inc={like:1};
       }else{
-        condition=unlike;
+        condition.$inc={unlike:1};
       }
-            pinUp.findByIDAndUpdate(pinupID, {$inc: {condition: 1}}, function(err, data) {
-              console.log(data);
+            pinUp.findByIdAndUpdate(pinupID, condition, function(err, data) {
+              console.log(err,data);
+              res.send("success");
             });
-        } catch (e) {
+
+      } catch (e) {
+          console.log(e);
         if (e == 401) {
             res.status(401).send({
                 "status": false,

@@ -12,6 +12,7 @@ router.use('/pinup', require('./action'));
 // router.use('/admin', require('./sendInvite'));
 router.use('/user', require('./userregister'));
 router.use('/user', require('./userlogin'));
+router.use(require('./recent'));
 
 
 // router.get('/', function(req, res) {
