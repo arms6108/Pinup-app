@@ -12,7 +12,7 @@ router.post('/', function(req, res) {
                 $ne: topicID
             }
         }, function(errr, data) {
-            console.log("data", data);
+          //  console.log("data", data);
             if (data.length !== 0) {
                 // throw 409;
                 res.status(409).send({

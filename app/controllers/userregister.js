@@ -8,7 +8,7 @@ var express = require('express'),
 
 
 router.post('/register', function(req, res) {
-    console.log('inside save controller');
+  //  console.log('inside save controller');
     var userData = {
         username: req.body.username,
         emailAddress: req.body.emailAddress
@@ -28,7 +28,7 @@ router.get('/register/getUserSubDomainList', function(req, res) {
         if (err) {
             res.send(err)
         } else {
-          console.log(data);
+        //  console.log(data);
             for(var i =0;i<data.length;i++){
             subdomainData[i] = data[i].subDomain;
             }
@@ -48,7 +48,7 @@ router.post('/register/setUserSubDomain', function(req, res) {
             res.send(err)
         } else {
             res.json(data)
-            console.log(data);
+            //console.log(data);
         }
     });
 });

@@ -5,7 +5,7 @@ var pinUp = require('../model/pinupSchema').pinUp;
 router.get('/:pinupID', function(req, res) {
     var token = req.headers['x-token'];
     try {
-        console.log(req.params.pinupID);
+      //  console.log(req.params.pinupID);
         pinUp.findById(req.params.pinupID, function(err, data) {
             //   data = data.map(function (p) {
             //   return p.toObject();
@@ -35,7 +35,7 @@ router.get('/:pinupID', function(req, res) {
             }
         });
     } catch (e) {
-        console.log(e);
+        //console.log(e);
         if (e == 401) {
             res.status(401).send({
                 "status": false,

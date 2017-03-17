@@ -1,9 +1,13 @@
 var express = require('express');
+var cookie = require('cookie');
 var router = express.Router();
 var pinUp = require('../model/pinupSchema').pinUp;
+var cookieParser = require('cookie-parser');
+
+var app = express();
+app.use(cookieParser());
 
 router.get('/recent', function(req, res) {
-  //  var token = req.headers['x-token'];
     var token="adfbnkafkashfalhsl";
     try {
           //var page = 0;

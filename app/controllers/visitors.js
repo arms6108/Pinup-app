@@ -15,9 +15,9 @@ app.use(requestIp.mw({ attributeName : 'myCustomAttributeName' }))
 module.exports = function(options) {
     return function(req, res, next) {
       var ip = req.myCustomAttributeName;
-          console.log(ip);
+          //console.log(ip);
           var ipType = net.isIP(ip); // returns 0 for invalid, 4 for IPv4, and 6 for IPv6
-          console.log('ip address is ' + ip + ' and is of type IPv' + ipType + '\n');
+          //console.log('ip address is ' + ip + ' and is of type IPv' + ipType + '\n');
 
         var source = req.headers['user-agent'];
         var agent = useragent.parse(source);
@@ -39,18 +39,18 @@ module.exports = function(options) {
             }
             i++;
         }
-        console.log(resultJson["browser"]);
+        //console.log(resultJson["browser"]);
 
         var data = {
             browser: resultJson["browser"],
             device: device
         }
-        console.log(data);
+        //console.log(data);
         visit.savenow(data, function(error, data1) {
             if (error) {
-                console.log(error)
+                //console.log(error)
             } else {
-                console.log(data1);
+              //  console.log(data1);
             }
         })
         // var ip = Object.keys(os).reduce(function (result, dev) {

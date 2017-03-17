@@ -12,7 +12,7 @@ router.post('/register', function(req, res) {
         password: req.body.password,
         emailAddress: req.body.emailAddress
     }
-    console.log(adminDetails);
+    //console.log(adminDetails);
     // display saved user
     admin.save(adminDetails, function(error, data) {
         if (error) {
@@ -30,12 +30,12 @@ router.post('/register/domain', function(req, res) {
         emailAddress: req.body.emailAddress,
         subDomain: req.body.subDomain
     };
-    console.log(domain);
+  //  console.log(domain);
     admin.find(domain, function(err, data) {
         if (err) {
             res.send(err)
         } else {
-            console.log(data);
+            //console.log(data);
             res.json(data)
         }
     });

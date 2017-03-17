@@ -9,7 +9,7 @@ var SECRET = 'shhhhhhared-secret';
 app.use('/api', expressJwt({secret: SECRET}));
 
 router.post('/register',function(req,res){
-  console.log(req.body);
+  //console.log(req.body);
    admin.create(req.body,function(err,user){
     if(err){
         res.send({

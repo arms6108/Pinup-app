@@ -8,7 +8,7 @@ router.get('/',function (req,res) {
   var token = req.headers['x-token'];
 
   try {
-      topicSchema.find({},'topicID topic',function(err,data) {
+      topicSchema.find({isDeleted:false},'topicID topic',function(err,data) {
         data = data.map(function (p) {
          return p.toObject();
        });
