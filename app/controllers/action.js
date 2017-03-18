@@ -12,60 +12,45 @@ router.post('/action', function(req, res) {
 
         var condition = {};
         pinupID = req.body.pinupID;
-        alreadyCookie = [];
+
         SECRET = 'thisispinuplike';
+        console.log("value:::",req.headers.cookie);
+        var pinupCookieValue = (req.headers.cookie===undefined?[]:JSON.parse(cookie.parse(req.headers.cookie).pinuplike));
+        console.log("after cookies::",pinupCookieValue);
 
-        console.log("cookies:",cookie);
-        //console.log(cookie.parse(req.headers.cookie[pinupID]));
-        // Parse the cookies on the request
-        console.log("log of pin",typeof cookie);
-
-        if (typeof cookie !== undefined) {
-          console.log("hello");
-          //var cookies = cookiejs.parse('foo=bar; cat=meow; dog=ruff');
-          if((typeof cookie.pinuplike) !== "undefined"){
-              console.log("clicked");
-              console.log(cookie.pinuplike);
-            //JSON.parse
-            //check the JSON Object for req.body.pinupID;
-            //if(pinupid exists)
-            //alert already linked
-            //else
-            // JSON already Cookie
-            //setcookie for pinuplike
-          }else if((typeof cookie.pinupunlike) !== "undefined"){
-console.log("clicked again");
-          }
-        //  res.send("already");
-      else{
-          console.log("entered for setheader");
-          pinupCookieValue = pinupID;//+"_"+SECRET;
-          //alreadyCookie.push(pinupCookieValue);
-          //pinuplikeObj = {"pinuplike": alreadyCookie};
-          //var cookieValue = JSON.stringify(pinuplikeObj, { maxAge: null, httpOnly: true});
-          //console.log(cookie.serialize(pinuplikeObj));
-          // Get the visitor name set in the cookie
-          //  var name = cookies.name;
-          res.setHeader('Set-Cookie', cookie.serialize('pinuplike', pinupCookieValue, {
-            httpOnly: true,
-            maxAge: null
-          }));
-          console.log("");
-            if (req.body.like === true) {
-                condition.$inc = {
-                    like: 1
-                };
-            } else if(req.body.unlike === true) {
-                condition.$inc = {
-                    unlike: 1
-                };
-            }
-            pinUp.findByIdAndUpdate(pinupID, condition, function(err, data) {
-                console.log(err, data);
-                res.send("success");
+        if (pinupCookieValue.indexOf(pinupID) !== -1) {
+            res.send({
+                "message": "Opinion already been taken into consideration"
             });
+        } else {
+            pinupCookieValue.push(pinupID);
+
+                    pinupCookieSerialize = JSON.stringify(pinupCookieValue); //+"_"+SECRET;
+
+                    res.setHeader('Set-Cookie', cookie.serialize('pinuplike', pinupCookieSerialize, {
+                        httpOnly: true,
+                        maxAge: 60
+                    }));
+                    console.log("Initial condition");
+                    if (req.body.like === true || req.body.unlike === false) {
+                        condition.$inc = {
+                            like: 1
+                        };
+                    } else if (req.body.like === false || req.body.unlike === true) {
+                        condition.$inc = {
+                            unlike: 1
+                        };
+                    }
+                    console.log("like condition", condition);
+                    pinUp.findByIdAndUpdate(pinupID, condition, function(err, data) {
+                        console.log(err, data);
+                        res.send("success");
+                    });
+
         }
-        }
+        //  res.send("already");
+
+
         console.log("leave");
     } catch (e) {
         console.log(e);
@@ -80,3 +65,4 @@ console.log("clicked again");
 });
 
 module.exports = router;
+
